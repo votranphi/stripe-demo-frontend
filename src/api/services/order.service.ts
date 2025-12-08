@@ -41,20 +41,4 @@ export const orderService = {
     const response = await axiosClient.post<{ success: boolean; data: CheckoutSessionResponse }>('/orders/checkout/create-session');
     return response.data.data;
   },
-
-  /**
-   * Handle successful checkout
-   */
-  handleCheckoutSuccess: async (sessionId: string): Promise<{ message: string }> => {
-    const response = await axiosClient.get<{ message: string }>(`/orders/checkout/success?session_id=${sessionId}`);
-    return response.data;
-  },
-
-  /**
-   * Handle cancelled checkout
-   */
-  handleCheckoutCancel: async (): Promise<{ message: string }> => {
-    const response = await axiosClient.get<{ message: string }>('/orders/checkout/cancel');
-    return response.data;
-  },
 };

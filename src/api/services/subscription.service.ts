@@ -16,22 +16,6 @@ export const subscriptionService = {
   },
 
   /**
-   * Handle successful subscription checkout
-   */
-  handleCheckoutSuccess: async (sessionId: string): Promise<{ message: string }> => {
-    const response = await axiosClient.get<{ message: string }>(`/subscriptions/checkout/success?session_id=${sessionId}`);
-    return response.data;
-  },
-
-  /**
-   * Handle cancelled subscription checkout
-   */
-  handleCheckoutCancel: async (): Promise<{ message: string }> => {
-    const response = await axiosClient.get<{ message: string }>('/subscriptions/checkout/cancel');
-    return response.data;
-  },
-
-  /**
    * Get current user's active subscription
    */
   getMySubscription: async (): Promise<UserSubscription | null> => {

@@ -1,23 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { orderService, subscriptionService } from '../../api/services';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
-import { LoadingSpinner } from '../../components/common';
 import { CheckCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export const SuccessPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [isVerifying, setIsVerifying] = useState(true);
   const [isSubscription, setIsSubscription] = useState(false);
 
   useEffect(() => {
-    verifyPayment();
-  }, []);
-
-  const verifyPayment = async () => {
     const sessionId = searchParams.get('session_id');
     const type = searchParams.get('type'); // 'order' or 'subscription'
 
@@ -27,35 +20,13 @@ export const SuccessPage = () => {
       return;
     }
 
-    try {
-      if (type === 'subscription') {
-        setIsSubscription(true);
-        await subscriptionService.handleCheckoutSuccess(sessionId);
-        toast.success('Subscription activated successfully!');
-      } else {
-        await orderService.handleCheckoutSuccess(sessionId);
-        toast.success('Payment successful! Your order has been confirmed.');
-      }
-    } catch (err) {
-      console.error('Verification error:', err);
-      toast.error('Failed to verify payment. Please contact support.');
-    } finally {
-      setIsVerifying(false);
+    if (type === 'subscription') {
+      setIsSubscription(true);
+      toast.success('Subscription activated successfully!');
+    } else {
+      toast.success('Payment successful! Your order has been confirmed.');
     }
-  };
-
-  if (isVerifying) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <Card className="max-w-2xl mx-auto">
-          <CardContent className="text-center py-12">
-            <LoadingSpinner />
-            <p className="text-gray-600 mt-4">Verifying your payment...</p>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
+  }, [searchParams, navigate]);
 
   return (
     <div className="container mx-auto px-4 py-8">
