@@ -42,8 +42,8 @@ export const subscriptionService = {
   /**
    * Create Stripe portal session for managing subscription
    */
-  createPortalSession: async (): Promise<PortalSessionResponse> => {
-    const response = await axiosClient.post<{ success: boolean; data: PortalSessionResponse }>('/subscriptions/portal-session');
+  createPortalSession: async (returnUrl: string): Promise<PortalSessionResponse> => {
+    const response = await axiosClient.post<{ success: boolean; data: PortalSessionResponse }>('/subscriptions/portal-session', { returnUrl });
     return response.data.data;
   },
 

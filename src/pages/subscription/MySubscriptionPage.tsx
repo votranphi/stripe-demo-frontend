@@ -31,7 +31,8 @@ export const MySubscriptionPage = () => {
   const handleManageSubscription = async () => {
     try {
       setIsManaging(true);
-      const response = await subscriptionService.createPortalSession();
+      const returnUrl = window.location.origin + '/my-subscription';
+      const response = await subscriptionService.createPortalSession(returnUrl);
       // Redirect to Stripe customer portal
       window.location.href = response.portalUrl;
     } catch (err) {
