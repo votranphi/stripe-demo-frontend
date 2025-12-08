@@ -26,6 +26,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   login: (token, user) => {
     authService.setToken(token);
+    localStorage.setItem('authUser', JSON.stringify(user));
     set({ 
       token, 
       user, 
@@ -36,6 +37,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   logout: () => {
     authService.logout();
+    localStorage.removeItem('authUser');
     set({ 
       token: null, 
       user: null, 
@@ -46,12 +48,23 @@ export const useAuthStore = create<AuthState>((set) => ({
   // Initialize auth state from localStorage
   initialize: () => {
     const token = authService.getToken();
-    if (token) {
-      set({ 
-        token, 
-        isAuthenticated: true,
-        isLoading: false 
-      });
+    const userStr = localStorage.getItem('authUser');
+    
+    if (token && userStr) {
+      try {
+        const user = JSON.parse(userStr);
+        set({ 
+          token, 
+          user,
+          isAuthenticated: true,
+          isLoading: false 
+        });
+      } catch (error) {
+        // If parsing fails, clear invalid data
+        authService.logout();
+        localStorage.removeItem('authUser');
+        set({ isLoading: false });
+      }
     } else {
       set({ isLoading: false });
     }
