@@ -119,7 +119,7 @@ export const ProductListPage = () => {
               </CardHeader>
               <CardContent className="flex-1">
                 <div className="text-3xl font-bold text-primary">
-                  ${product.price.toFixed(2)}
+                  ${(product.price / 100).toFixed(2)}
                 </div>
               </CardContent>
               <CardFooter>

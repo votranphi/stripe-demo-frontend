@@ -74,7 +74,7 @@ export const PricingPage = () => {
               </CardHeader>
               <CardContent className="flex-1">
                 <div className="mb-6">
-                  <span className="text-5xl font-bold">${plan.product?.price || 0}</span>
+                  <span className="text-5xl font-bold">${((plan.product?.price || 0) / 100).toFixed(2)}</span>
                   <span className="text-gray-600">
                     /{plan.frequency === SubscriptionFrequency.MONTHLY ? 'month' : 'year'}
                   </span>

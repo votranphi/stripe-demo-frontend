@@ -95,7 +95,7 @@ export const CartPage = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold text-gray-900">{item.name}</h3>
-                      <p className="text-gray-600">${item.price.toFixed(2)} each</p>
+                      <p className="text-gray-600">${(item.price / 100).toFixed(2)} each</p>
                     </div>
 
                     <div className="flex items-center space-x-4">
@@ -121,7 +121,7 @@ export const CartPage = () => {
 
                       {/* Item Total */}
                       <div className="w-24 text-right font-semibold">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        ${(item.price * item.quantity / 100).toFixed(2)}
                       </div>
 
                       {/* Remove Button */}

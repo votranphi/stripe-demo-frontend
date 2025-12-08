@@ -11,8 +11,8 @@ export const subscriptionService = {
    * Create Stripe checkout session for subscription
    */
   createCheckoutSession: async (data: CreateSubscriptionCheckoutRequest): Promise<SubscriptionCheckoutResponse> => {
-    const response = await axiosClient.post<SubscriptionCheckoutResponse>('/subscriptions/checkout/create-session', data);
-    return response.data;
+    const response = await axiosClient.post<{ success: boolean; data: SubscriptionCheckoutResponse }>('/subscriptions/checkout/create-session', data);
+    return response.data.data;
   },
 
   /**
@@ -35,16 +35,16 @@ export const subscriptionService = {
    * Get current user's active subscription
    */
   getMySubscription: async (): Promise<UserSubscription | null> => {
-    const response = await axiosClient.get<UserSubscription>('/subscriptions/me');
-    return response.data;
+    const response = await axiosClient.get<{ success: boolean; data: UserSubscription | null }>('/subscriptions/me');
+    return response.data.data;
   },
 
   /**
    * Create Stripe portal session for managing subscription
    */
   createPortalSession: async (): Promise<PortalSessionResponse> => {
-    const response = await axiosClient.post<PortalSessionResponse>('/subscriptions/portal-session');
-    return response.data;
+    const response = await axiosClient.post<{ success: boolean; data: PortalSessionResponse }>('/subscriptions/portal-session');
+    return response.data.data;
   },
 
   /**

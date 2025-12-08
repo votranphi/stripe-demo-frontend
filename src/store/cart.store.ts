@@ -24,7 +24,7 @@ export const useCartStore = create<CartState>((set, get) => ({
     const { cart } = get();
     if (cart && cart.lineItems) {
       const itemCount = cart.lineItems.reduce((sum, item) => sum + item.quantity, 0);
-      const totalAmount = cart.lineItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const totalAmount = cart.lineItems.reduce((sum, item) => sum + (item.price * item.quantity / 100), 0);
       set({ itemCount, totalAmount });
     } else {
       set({ itemCount: 0, totalAmount: 0 });
