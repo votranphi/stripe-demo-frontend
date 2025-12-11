@@ -33,7 +33,7 @@ export const Navbar = () => {
               <Package className="h-6 w-6 text-primary" />
               <span className="text-xl font-bold text-gray-900">StripeStore</span>
             </Link>
-            
+
             <div className="hidden md:flex space-x-6">
               <Link to="/products" className="text-gray-700 hover:text-primary transition-colors">
                 Products
@@ -41,36 +41,49 @@ export const Navbar = () => {
               <Link to="/pricing" className="text-gray-700 hover:text-primary transition-colors">
                 Pricing
               </Link>
-              
+
               {/* Admin Menu - Desktop */}
               {isAuthenticated && isAdmin && (
                 <div className="relative group">
-                  <button 
-                    className="flex items-center text-gray-700 hover:text-primary transition-colors"
-                    onMouseEnter={() => setAdminMenuOpen(true)}
-                    onMouseLeave={() => setAdminMenuOpen(false)}
+                  <button
+                    className="flex items-center text-gray-700 hover:text-primary transition-colors cursor-pointer"
+                    onClick={() => setAdminMenuOpen(!adminMenuOpen)}
                   >
                     Admin <ChevronDown className="ml-1 h-4 w-4" />
                   </button>
                   {adminMenuOpen && (
-                    <div 
+                    <div
                       className="absolute top-full left-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 border"
-                      onMouseEnter={() => setAdminMenuOpen(true)}
-                      onMouseLeave={() => setAdminMenuOpen(false)}
                     >
-                      <Link to="/admin/dashboard" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      <Link
+                        to="/admin/dashboard"
+                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        onClick={() => setAdminMenuOpen(false)}
+                      >
                         <LayoutDashboard className="mr-2 h-4 w-4" />
                         Dashboard
                       </Link>
-                      <Link to="/admin/products" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      <Link
+                        to="/admin/products"
+                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        onClick={() => setAdminMenuOpen(false)}
+                      >
                         <Package className="mr-2 h-4 w-4" />
                         Manage Products
                       </Link>
-                      <Link to="/admin/orders" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      <Link
+                        to="/admin/orders"
+                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        onClick={() => setAdminMenuOpen(false)}
+                      >
                         <ShoppingCart className="mr-2 h-4 w-4" />
                         View Orders
                       </Link>
-                      <Link to="/admin/subscription-plans" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      <Link
+                        to="/admin/subscription-plans"
+                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        onClick={() => setAdminMenuOpen(false)}
+                      >
                         <Settings className="mr-2 h-4 w-4" />
                         Subscription Plans
                       </Link>
@@ -100,33 +113,33 @@ export const Navbar = () => {
                 <div className="relative">
                   <button
                     onClick={() => setUserMenuOpen(!userMenuOpen)}
-                    className="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors"
+                    className="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors cursor-pointer"
                   >
                     <User className="h-5 w-5" />
                     <span className="text-sm">{user?.email}</span>
                     <ChevronDown className="h-4 w-4" />
                   </button>
-                  
+
                   {userMenuOpen && (
                     <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-md shadow-lg py-1 border">
-                      <Link 
-                        to="/my-subscription" 
+                      <Link
+                        to="/my-subscription"
                         className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         onClick={() => setUserMenuOpen(false)}
                       >
                         <CreditCard className="mr-2 h-4 w-4" />
                         My Subscription
                       </Link>
-                      <Link 
-                        to="/orders" 
+                      <Link
+                        to="/orders"
                         className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         onClick={() => setUserMenuOpen(false)}
                       >
                         <FileText className="mr-2 h-4 w-4" />
                         My Orders
                       </Link>
-                      <Link 
-                        to="/digital-content" 
+                      <Link
+                        to="/digital-content"
                         className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         onClick={() => setUserMenuOpen(false)}
                       >
@@ -136,7 +149,7 @@ export const Navbar = () => {
                       <hr className="my-1" />
                       <button
                         onClick={handleLogout}
-                        className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                       >
                         <LogOut className="mr-2 h-4 w-4" />
                         Logout
@@ -181,15 +194,15 @@ export const Navbar = () => {
         {mobileMenuOpen && (
           <div className="md:hidden border-t py-4">
             <div className="flex flex-col space-y-3">
-              <Link 
-                to="/products" 
+              <Link
+                to="/products"
                 className="text-gray-700 hover:text-primary transition-colors px-4 py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Products
               </Link>
-              <Link 
-                to="/pricing" 
+              <Link
+                to="/pricing"
                 className="text-gray-700 hover:text-primary transition-colors px-4 py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -200,24 +213,24 @@ export const Navbar = () => {
                 <>
                   <hr className="my-2" />
                   <div className="px-4 py-2 text-sm text-gray-500 font-semibold">Account</div>
-                  <Link 
-                    to="/my-subscription" 
+                  <Link
+                    to="/my-subscription"
                     className="flex items-center text-gray-700 hover:text-primary transition-colors px-4 py-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <CreditCard className="mr-2 h-4 w-4" />
                     My Subscription
                   </Link>
-                  <Link 
-                    to="/orders" 
+                  <Link
+                    to="/orders"
                     className="flex items-center text-gray-700 hover:text-primary transition-colors px-4 py-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <FileText className="mr-2 h-4 w-4" />
                     My Orders
                   </Link>
-                  <Link 
-                    to="/digital-content" 
+                  <Link
+                    to="/digital-content"
                     className="flex items-center text-gray-700 hover:text-primary transition-colors px-4 py-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -229,32 +242,32 @@ export const Navbar = () => {
                     <>
                       <hr className="my-2" />
                       <div className="px-4 py-2 text-sm text-gray-500 font-semibold">Admin</div>
-                      <Link 
-                        to="/admin/dashboard" 
+                      <Link
+                        to="/admin/dashboard"
                         className="flex items-center text-gray-700 hover:text-primary transition-colors px-4 py-2"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <LayoutDashboard className="mr-2 h-4 w-4" />
                         Dashboard
                       </Link>
-                      <Link 
-                        to="/admin/products" 
+                      <Link
+                        to="/admin/products"
                         className="flex items-center text-gray-700 hover:text-primary transition-colors px-4 py-2"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <Package className="mr-2 h-4 w-4" />
                         Manage Products
                       </Link>
-                      <Link 
-                        to="/admin/orders" 
+                      <Link
+                        to="/admin/orders"
                         className="flex items-center text-gray-700 hover:text-primary transition-colors px-4 py-2"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <ShoppingCart className="mr-2 h-4 w-4" />
                         View Orders
                       </Link>
-                      <Link 
-                        to="/admin/subscription-plans" 
+                      <Link
+                        to="/admin/subscription-plans"
                         className="flex items-center text-gray-700 hover:text-primary transition-colors px-4 py-2"
                         onClick={() => setMobileMenuOpen(false)}
                       >
@@ -277,15 +290,15 @@ export const Navbar = () => {
               ) : (
                 <>
                   <hr className="my-2" />
-                  <Link 
-                    to="/login" 
+                  <Link
+                    to="/login"
                     className="text-gray-700 hover:text-primary transition-colors px-4 py-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Login
                   </Link>
-                  <Link 
-                    to="/register" 
+                  <Link
+                    to="/register"
                     className="text-gray-700 hover:text-primary transition-colors px-4 py-2"
                     onClick={() => setMobileMenuOpen(false)}
                   >
