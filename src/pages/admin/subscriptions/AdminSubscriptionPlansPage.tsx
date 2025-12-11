@@ -5,7 +5,7 @@ import { Button } from '../../../components/ui/button';
 import { Input } from '../../../components/ui/input';
 import { Label } from '../../../components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
-import { LoadingSpinner } from '../../../components/common';
+import { LoadingSpinner, Breadcrumb } from '../../../components/common';
 import { Trash2, Plus } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -64,6 +64,12 @@ export const AdminSubscriptionPlansPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <Breadcrumb 
+        items={[
+          { label: 'Admin', href: '/admin/dashboard' },
+          { label: 'Subscription Plans' }
+        ]} 
+      />
       <h1 className="text-3xl font-bold text-gray-900 mb-6">Subscription Plans</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -6,7 +6,7 @@ import { Button } from '../../../components/ui/button';
 import { Input } from '../../../components/ui/input';
 import { Label } from '../../../components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
-import { LoadingSpinner } from '../../../components/common';
+import { LoadingSpinner, Breadcrumb } from '../../../components/common';
 import toast from 'react-hot-toast';
 
 export const AdminProductFormPage = () => {
@@ -75,6 +75,13 @@ export const AdminProductFormPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-2xl">
+      <Breadcrumb 
+        items={[
+          { label: 'Admin', href: '/admin/dashboard' },
+          { label: 'Products', href: '/admin/products' },
+          { label: isEditMode ? 'Edit Product' : 'New Product' }
+        ]} 
+      />
       <h1 className="text-3xl font-bold text-gray-900 mb-6">
         {isEditMode ? 'Edit Product' : 'Create New Product'}
       </h1>

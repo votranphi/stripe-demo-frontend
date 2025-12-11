@@ -67,21 +67,21 @@ export const AdminDashboardPage = () => {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="border rounded-lg p-4 hover:bg-gray-50 cursor-pointer transition-colors">
+            <a href="/admin/products" className="block border rounded-lg p-4 hover:bg-gray-50 cursor-pointer transition-colors hover:border-primary">
               <Package className="h-8 w-8 text-primary mb-2" />
               <h3 className="font-semibold mb-1">Manage Products</h3>
               <p className="text-sm text-gray-600">Add, edit, or remove products</p>
-            </div>
-            <div className="border rounded-lg p-4 hover:bg-gray-50 cursor-pointer transition-colors">
+            </a>
+            <a href="/admin/orders" className="block border rounded-lg p-4 hover:bg-gray-50 cursor-pointer transition-colors hover:border-primary">
               <ShoppingCart className="h-8 w-8 text-primary mb-2" />
               <h3 className="font-semibold mb-1">View Orders</h3>
               <p className="text-sm text-gray-600">Manage customer orders</p>
-            </div>
-            <div className="border rounded-lg p-4 hover:bg-gray-50 cursor-pointer transition-colors">
+            </a>
+            <a href="/admin/subscription-plans" className="block border rounded-lg p-4 hover:bg-gray-50 cursor-pointer transition-colors hover:border-primary">
               <Users className="h-8 w-8 text-primary mb-2" />
-              <h3 className="font-semibold mb-1">User Management</h3>
-              <p className="text-sm text-gray-600">View and manage users</p>
-            </div>
+              <h3 className="font-semibold mb-1">Subscription Plans</h3>
+              <p className="text-sm text-gray-600">Manage subscription plans</p>
+            </a>
           </div>
         </CardContent>
       </Card>

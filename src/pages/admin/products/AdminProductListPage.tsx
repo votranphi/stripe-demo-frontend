@@ -5,7 +5,7 @@ import { Product, ProductType } from '../../../types';
 import { Button } from '../../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
 import { Badge } from '../../../components/ui/badge';
-import { LoadingSpinner, ErrorMessage } from '../../../components/common';
+import { LoadingSpinner, ErrorMessage, Breadcrumb } from '../../../components/common';
 import { Edit, Trash2, Plus, Package } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -46,6 +46,12 @@ export const AdminProductListPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <Breadcrumb 
+        items={[
+          { label: 'Admin', href: '/admin/dashboard' },
+          { label: 'Products' }
+        ]} 
+      />
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-gray-900">Products</h1>
         <Link to="/admin/products/new">

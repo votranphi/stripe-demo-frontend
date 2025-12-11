@@ -4,7 +4,7 @@ import { Order, OrderStatus } from '../../../types';
 import { Button } from '../../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
 import { Badge } from '../../../components/ui/badge';
-import { LoadingSpinner } from '../../../components/common';
+import { LoadingSpinner, Breadcrumb } from '../../../components/common';
 import toast from 'react-hot-toast';
 
 const STATUS_COLORS: Record<string, 'default' | 'secondary' | 'destructive' | 'outline' | 'success'> = {
@@ -53,6 +53,12 @@ export const AdminOrderListPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <Breadcrumb 
+        items={[
+          { label: 'Admin', href: '/admin/dashboard' },
+          { label: 'Orders' }
+        ]} 
+      />
       <h1 className="text-3xl font-bold text-gray-900 mb-6">Order Management</h1>
 
       <Card>
