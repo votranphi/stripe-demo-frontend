@@ -105,7 +105,7 @@ export const AdminSubscriptionPlansPage = () => {
                 <div className="space-y-2">
                   <Label>Product</Label>
                   <select 
-                    className="w-full border rounded p-2 text-sm bg-background"
+                    className="w-full border rounded p-2 text-sm bg-background cursor-pointer"
                     value={newPlan.productId}
                     onChange={e => setNewPlan({ ...newPlan, productId: e.target.value })}
                     required
@@ -130,7 +130,7 @@ export const AdminSubscriptionPlansPage = () => {
                 <div className="space-y-2">
                   <Label>Frequency</Label>
                   <select 
-                    className="w-full border rounded p-2 text-sm bg-background"
+                    className="w-full border rounded p-2 text-sm bg-background cursor-pointer"
                     value={newPlan.frequency}
                     onChange={e => setNewPlan({ ...newPlan, frequency: e.target.value as SubscriptionFrequency })}
                   >
