@@ -96,7 +96,7 @@ export const AdminOrderListPage = () => {
                     </td>
                     <td className="px-6 py-4">
                       <select
-                        className="text-xs border rounded p-1"
+                        className="text-xs border rounded p-1 cursor-pointer"
                         value={order.status}
                         onChange={(e) => handleStatusUpdate(order.id, e.target.value as OrderStatus)}
                         disabled={order.status === OrderStatus.CANCELLED || order.status === OrderStatus.DELIVERED}
