@@ -85,15 +85,6 @@ export const MySubscriptionPage = () => {
                 <div className="flex items-start space-x-3">
                   <Calendar className="h-5 w-5 text-gray-400 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Current Period Start</p>
-                    <p className="text-lg font-semibold">
-                      {new Date(subscription.currentPeriodStart).toLocaleDateString()}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <Calendar className="h-5 w-5 text-gray-400 mt-0.5" />
-                  <div>
                     <p className="text-sm font-medium text-gray-600">Current Period End</p>
                     <p className="text-lg font-semibold">
                       {new Date(subscription.currentPeriodEnd).toLocaleDateString()}
