@@ -58,10 +58,21 @@ export const MySubscriptionPage = () => {
           <CardContent className="text-center py-12">
             <CreditCard className="h-16 w-16 text-gray-400 mx-auto mb-4" />
             <h2 className="text-2xl font-semibold text-gray-900 mb-2">No Active Subscription</h2>
-            <p className="text-gray-600 mb-6">You don't have any active subscription yet.</p>
-            <Button onClick={() => window.location.href = '/pricing'}>
-              View Pricing Plans
-            </Button>
+            <p className="text-gray-600 mb-6">
+              You don't have any active subscription. You can view plans or manage your billing details (update card, view invoices).
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Button onClick={() => window.location.href = '/pricing'}>
+                View Pricing Plans
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={handleManageSubscription}
+                disabled={isManaging}
+              >
+                {isManaging ? 'Redirecting...' : 'Manage Billing & Invoices'}
+              </Button>
+            </div>
           </CardContent>
         </Card>
       ) : (
