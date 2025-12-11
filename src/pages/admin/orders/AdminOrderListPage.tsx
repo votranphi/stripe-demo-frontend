@@ -81,7 +81,7 @@ export const AdminOrderListPage = () => {
                 {orders.map((order) => (
                   <tr key={order.id} className="bg-white border-b">
                     <td className="px-6 py-4 font-mono text-xs">{order.id}</td>
-                    <td className="px-6 py-4">${(order.totalAmount || 0).toFixed(2)}</td>
+                    <td className="px-6 py-4">${((order.totalAmount || 0) / 100).toFixed(2)}</td>
                     <td className="px-6 py-4">
                       <ul className="list-disc pl-4 text-xs">
                         {order.lineItems.map((item, idx) => (
