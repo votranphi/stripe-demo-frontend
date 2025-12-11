@@ -1,3 +1,4 @@
+// src/App.tsx
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
@@ -24,6 +25,14 @@ import { SuccessPage } from './pages/checkout/SuccessPage';
 import { CancelPage } from './pages/checkout/CancelPage';
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
 
+// New Pages
+import { AdminProductListPage } from './pages/admin/products/AdminProductListPage';
+import { AdminProductFormPage } from './pages/admin/products/AdminProductFormPage';
+import { AdminOrderListPage } from './pages/admin/orders/AdminOrderListPage';
+import { AdminSubscriptionPlansPage } from './pages/admin/subscriptions/AdminSubscriptionPlansPage';
+import { DigitalContentPage } from './pages/content/DigitalContentPage';
+import { MyOrdersPage } from './pages/orders/MyOrdersPage';
+
 import './App.css';
 
 function App() {
@@ -31,12 +40,10 @@ function App() {
   const { setCart } = useCartStore();
 
   useEffect(() => {
-    // Initialize auth state from localStorage
     initialize();
   }, [initialize]);
 
   useEffect(() => {
-    // Fetch cart when user is authenticated
     if (isAuthenticated) {
       fetchCart();
     }
@@ -55,91 +62,48 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* Public Routes with Main Layout */}
+          {/* Public Routes */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/products" element={<ProductListPage />} />
             <Route path="/pricing" element={<PricingPage />} />
-            
+
             {/* Protected Routes */}
-            <Route
-              path="/cart"
-              element={
-                <ProtectedRoute>
-                  <CartPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/my-subscription"
-              element={
-                <ProtectedRoute>
-                  <MySubscriptionPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/success"
-              element={
-                <ProtectedRoute>
-                  <SuccessPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/cancel"
-              element={
-                <ProtectedRoute>
-                  <CancelPage />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
+            <Route path="/orders" element={<ProtectedRoute><MyOrdersPage /></ProtectedRoute>} />
+            <Route path="/my-subscription" element={<ProtectedRoute><MySubscriptionPage /></ProtectedRoute>} />
+            <Route path="/digital-content" element={<ProtectedRoute><DigitalContentPage /></ProtectedRoute>} />
+            <Route path="/success" element={<ProtectedRoute><SuccessPage /></ProtectedRoute>} />
+            <Route path="/cancel" element={<ProtectedRoute><CancelPage /></ProtectedRoute>} />
 
             {/* Admin Routes */}
-            <Route
-              path="/admin/dashboard"
-              element={
-                <AdminRoute>
-                  <AdminDashboardPage />
-                </AdminRoute>
-              }
-            />
+            <Route path="/admin">
+              <Route path="dashboard" element={<AdminRoute><AdminDashboardPage /></AdminRoute>} />
+              <Route path="products" element={<AdminRoute><AdminProductListPage /></AdminRoute>} />
+              <Route path="products/new" element={<AdminRoute><AdminProductFormPage /></AdminRoute>} />
+              <Route path="products/:id/edit" element={<AdminRoute><AdminProductFormPage /></AdminRoute>} />
+              <Route path="orders" element={<AdminRoute><AdminOrderListPage /></AdminRoute>} />
+              <Route path="subscription-plans" element={<AdminRoute><AdminSubscriptionPlansPage /></AdminRoute>} />
+            </Route>
           </Route>
 
-          {/* Auth Routes with Auth Layout */}
+          {/* Auth Routes */}
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
           </Route>
 
-          {/* Fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
 
-      {/* Toast Notifications */}
       <Toaster
         position="top-right"
         toastOptions={{
           duration: 4000,
-          style: {
-            background: '#363636',
-            color: '#fff',
-          },
-          success: {
-            duration: 3000,
-            iconTheme: {
-              primary: '#10b981',
-              secondary: '#fff',
-            },
-          },
-          error: {
-            duration: 4000,
-            iconTheme: {
-              primary: '#ef4444',
-              secondary: '#fff',
-            },
-          },
+          style: { background: '#363636', color: '#fff' },
+          success: { duration: 3000, iconTheme: { primary: '#10b981', secondary: '#fff' } },
+          error: { duration: 4000, iconTheme: { primary: '#ef4444', secondary: '#fff' } },
         }}
       />
     </>
@@ -147,4 +111,3 @@ function App() {
 }
 
 export default App;
-

@@ -1,5 +1,5 @@
 import axiosClient from '../axiosClient';
-import { Order, AddToCartRequest, UpdateCartItemRequest, CheckoutSessionResponse } from '../../types';
+import { Order, AddToCartRequest, UpdateCartItemRequest, CheckoutSessionResponse, PaginatedResponse, OrderStatus } from '../../types';
 
 export const orderService = {
   /**
@@ -41,4 +41,25 @@ export const orderService = {
     const response = await axiosClient.post<{ success: boolean; data: CheckoutSessionResponse }>('/orders/checkout/create-session');
     return response.data.data;
   },
+
+  /**
+   * Get all orders (Admin only)
+   */
+  getAllOrders: async (page = 1, limit = 10): Promise<PaginatedResponse<Order>> => {
+    const response = await axiosClient.get<{ success: boolean; data: Order[]; pagination: any }>('/admin/orders', {
+      params: { page, limit }
+    });
+    return {
+      data: response.data.data,
+      ...response.data.pagination
+    };
+  },
+
+  /**
+   * Update order status (Admin only)
+   */
+  updateOrderStatus: async (id: string, status: OrderStatus): Promise<Order> => {
+    const response = await axiosClient.put<{ success: boolean; data: Order }>(`/admin/orders/${id}/status`, { status });
+    return response.data.data;
+  }
 };
