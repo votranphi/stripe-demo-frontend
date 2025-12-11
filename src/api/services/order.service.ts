@@ -43,6 +43,19 @@ export const orderService = {
   },
 
   /**
+   * Get current user's orders (non-draft orders)
+   */
+  getMyOrders: async (page = 1, limit = 10): Promise<PaginatedResponse<Order>> => {
+    const response = await axiosClient.get<{ success: boolean; data: Order[]; pagination: any }>('/orders', {
+      params: { page, limit }
+    });
+    return {
+      data: response.data.data,
+      ...response.data.pagination
+    };
+  },
+
+  /**
    * Get all orders (Admin only)
    */
   getAllOrders: async (page = 1, limit = 10): Promise<PaginatedResponse<Order>> => {
